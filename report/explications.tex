@@ -1,0 +1,139 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc} % encoding
+\renewcommand{\familydefault}{\sfdefault} % sans-serif font
+
+\usepackage[french]{babel} % langages
+\frenchsetup{SmallCapsFigTabCaptions=false}
+
+\newcommand{\emma}{Emma Botti}
+\newcommand{\anri}{Anri Kennel}
+
+\newcommand{\settitle}{Projet}
+
+\usepackage[
+  pdfauthor={\emma\ et \anri}, % author metadata
+  pdftitle={\settitle},        % title  metadata
+  hidelinks,                   % clickable nks in table of contents
+]{hyperref}
+
+\title{\settitle}
+
+\usepackage{graphicx} % images
+
+\title{Projet}
+\author{Binôme 38 \\
+        \emma\thanks{\emma : 71701040}\, et \anri\thanks{\anri : 22302653} \\
+        Langages à objet avancés $\cdot$ Université Paris Cité}
+\date{Année universitaire 2023-2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+% Alias
+\newcommand{\separator}{\vspace{1em}}
+
+\section{Ce qui a été traité}
+Le projet a été réalisé en binôme.
+
+\subsection{Jeux implémentés}
+Les jeux suivants ont étés implémentés :
+\begin{itemize}
+  \item Butin
+  \item Dames
+  \item Safari
+\end{itemize}
+
+\subsection{Affichage}
+L'affichage est géré via une classe \texttt{Ecran} qui utilises \texttt{SFML}.
+\begin{itemize}
+  \item \texttt{afficher} est la méthode principale de la classe, car elle prend
+        en argument deux fonctions qui permettent de gérer l'affichage et le
+        clic-gauche de la souris
+\end{itemize}
+
+\subsection{Héritage}
+De l'héritage a été utilisé pour décrire des jeux "\textit{conceptuellement
+  proches}".
+\begin{itemize}
+  \item classe \texttt{Jeu} est dérivée en \texttt{Butin}, \texttt{Dames} et
+        \texttt{Safari}
+  \item classe \texttt{Piece} est dérivée en \texttt{PieceButin},
+        \texttt{PieceDames} et \texttt{PieceSafari}
+  \item classe \texttt{Plateau} est dérivée en \texttt{PlateauButin},
+        \texttt{PlateauDames} et \texttt{PlateauSafari}
+\end{itemize}
+
+\subsection{Généricité}
+La généricité a majoritairement été utilisée pour le débogage, pour exemple
+une fonction qui affiche le contenu de n'importe quel \texttt{vector}.
+
+\subsection{Compilation}
+Un \texttt{Makefile} a été écrit pour faciliter la compilation du projet.
+\begin{itemize}
+  \item \texttt{make} permet la compilation du projet
+  \item \texttt{make dev} permet la compilation avec des flag utile au débogage
+  \item Les jeux ont étés séparés dans des sous-dossiers pour une meilleure
+        lisibilité des fichiers headers et source.
+\end{itemize}
+
+\section{Aspects significatifs}
+\subsection{Modularité}
+Les classes \texttt{Jeu} et \texttt{Piece} sont abstraites, car elles n'ont pas
+de sens sans certaines méthodes uniques aux jeux. En revanche la classe
+\texttt{Plateau} peut exister seule, mais ne sert à rien sans jeu, elle
+possède des méthodes virtuelles pour permettre des plus grandes flexibilités
+sur certains aspects de l'affichage. La couleur des cases peut également être
+personnalisée. La classe \texttt{Joueur} est marquée \texttt{finale}, car elle
+reste la même parmi tous les jeux et un joueur possède les mêmes actions.
+
+\subsection{Environnement d'accueil}
+L'environnement d'accueil se fait via les arguments du programme, le terminal
+n'est utilisé que pour choisir le nombre de joueurs pour le jeu "Safari", tout
+le reste ce fait via interaction avec l'écran de jeu.
+
+\subsection{Indications}
+Les indications se font via une ligne de texte situé en dessous du plateau
+de jeu.
+
+\subsection{Collaboration}
+Nous avons utilisé
+\href{https://gaufre.informatique.univ-paris-diderot.fr/Anri/projet-cpp}{Git}
+pour développeur le projet avec des commits poussés régulièrement ($\approx$~200).
+
+\subsection{Affichage}
+L'affichage (méthode \texttt{play}) est séparé de la logique du jeu
+(méthode \texttt{event}).
+
+\section{Problèmes rencontrés}
+L'affichage SFML n'était pas facile à prendre en main pour faire une classe
+pratique à utiliser parmi une multitude de jeux. Nous avons opté pour une classe
+\texttt{Ecran} qui prend en argument des fonctions qui seront appelés à chaque
+dessin d'une image. Ces fonctions sont personnalisées pour chaque jeu et sont
+les méthodes principales des jeux en question.
+
+\section{Ce qui n'a pas été implémenté}
+\subsection*{Global}
+Les joueurs ne se voient pas affichés d'indications sur où placer leurs pièces.
+
+\separator
+Les parties se font joueur contre joueur uniquement.
+
+\subsection*{Dames}
+Le jeu de Dames n'est pas complètement terminé sur certains aspects :
+\begin{itemize}
+  \item Transformation en dame
+  \item Condition de fin de partie
+\end{itemize}
+
+\newpage
+\section{Diagramme UML} % ou plusieurs ?
+\begin{figure}[h]
+  \hspace{-12em}
+  \includegraphics[width=1.7\textwidth]{imgs/diagrammeUML.png}
+  \caption{Diagramme UML}
+\end{figure}
+
+\end{document}
