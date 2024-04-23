@@ -3,7 +3,7 @@
 Nous avons choisi ces trois jeux :
 
 - [x] [Butin](http://jeuxstrategieter.free.fr/Butin_complet.php)
-- [ ] [Dames](https://infolib.re/storage/files/documents/jeux_de_societe/Les%20dames%20-%20R%C3%A8gle%20du%20jeu.pdf)
+- [x] [Dames](https://infolib.re/storage/files/documents/jeux_de_societe/Les%20dames%20-%20R%C3%A8gle%20du%20jeu.pdf)
 - [x] [Safari](https://escaleajeux.fr/jeu/prene.0.0)
 
 <!-- ## Installation des librairies
